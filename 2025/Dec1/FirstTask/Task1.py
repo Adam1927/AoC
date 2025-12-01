@@ -6,17 +6,17 @@ encrypted_file.close()
 
 for line in file_lines:
     letter = ""
-    number = ""
+    number_string = ""
     for character in line.replace("\n", ""):
         if character.isdigit():
-            number += character
+            number_string += character
         else:
             letter = character
-    old_dial_position = current_dial_position
+    number = int(number_string)
     if letter == "R":
-        current_dial_position = (int(number) + old_dial_position) % 100
+        current_dial_position = (number + current_dial_position) % 100
     else:
-        current_dial_position = (old_dial_position - int(number)) % 100
+        current_dial_position = (current_dial_position - number) % 100
     if current_dial_position == 0:
         code_counter += 1
     print(current_dial_position)
